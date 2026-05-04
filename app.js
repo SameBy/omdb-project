@@ -74,7 +74,6 @@ function checkIfFiltersChanged() {
     const savedImdb = localStorage.getItem('imdbFilter') !== null ? localStorage.getItem('imdbFilter') : "1";
     const savedKids = localStorage.getItem('kidsMode') !== null ? localStorage.getItem('kidsMode') === 'true' : false;
     const savedSort = localStorage.getItem('sortFilter') !== null ? localStorage.getItem('sortFilter') : "default";
-    const savedSearch = localStorage.getItem('lastSearchTerm') !== null ? localStorage.getItem('lastSearchTerm') : "";
 
     const isChanged = (
         typeFilter.value !== savedType ||
@@ -83,14 +82,13 @@ function checkIfFiltersChanged() {
         maxYearInput.value !== savedMaxYear ||
         imdbFilter.value !== savedImdb ||
         kidsModeCheckbox.checked !== savedKids ||
-        sortFilter.value !== savedSort ||
-        searchInput.value.trim() !== savedSearch
+        sortFilter.value !== savedSort
     );
 
     applyFiltersBtn.disabled = !isChanged;
 }
 
-const allInputs = [searchInput, typeFilter, genreFilter, minYearInput, maxYearInput, imdbFilter, kidsModeCheckbox, sortFilter];
+const allInputs = [typeFilter, genreFilter, minYearInput, maxYearInput, imdbFilter, kidsModeCheckbox, sortFilter];
 allInputs.forEach(el => {
     el.addEventListener('input', () => {
         if(el.id === 'imdb-filter') {
@@ -103,6 +101,7 @@ allInputs.forEach(el => {
 
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
+        applyFiltersBtn.disabled = false;
         applyFiltersBtn.click();
     }
 });
