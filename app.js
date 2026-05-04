@@ -319,15 +319,15 @@ card.innerHTML = `
                     <span>${movie.Genre.split(',')[0]}</span>
                     
                     <div style="display: flex; gap: 8px; align-items: center;">
-                        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(movie.Title + ' ' + movie.Year + ' trailer')}" target="_blank" title="YouTube'da Fragman İzle" style="color: #ff0000; text-decoration: none; border: 1px solid rgba(255,0,0,0.3); padding: 2px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4px; transition: 0.3s; background: rgba(255,0,0,0.05);">
-                            <i class="fa-brands fa-youtube"></i> Fragman
+                        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(movie.Title + ' ' + movie.Year + ' trailer')}" target="_blank" title="Watch Trailer on YouTube" style="color: #ff0000; text-decoration: none; border: 1px solid rgba(255,0,0,0.3); padding: 2px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4px; transition: 0.3s; background: rgba(255,0,0,0.05);">
+                            <i class="fa-brands fa-youtube"></i> Trailer
                         </a>
                         <span style="border: 1px solid #1f1f27; padding: 2px 6px; border-radius: 4px;">${movie.Rated !== 'N/A' ? movie.Rated : 'Unrated'}</span>
                     </div>
                 </div>
             </div>
         `;
-
+        
         movieGrid.appendChild(card);
     });
     
