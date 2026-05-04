@@ -217,11 +217,14 @@ async function fetchMovies(searchTerm) {
 function updateUI() {
     if (currentRawMovies.length === 0) return;
 
-    const hasSearchTerm = searchInput.value.trim().length > 0;
-    if(defaultTitle) {
-        defaultTitle.style.display = hasSearchTerm ? 'none' : 'block';
+    if (isDefaultState) {
+        if(defaultTitle) defaultTitle.style.display = 'block';
+        renderMovies(currentRawMovies);
+        return;
     }
 
+    if(defaultTitle) defaultTitle.style.display = 'none';
+    
     let processedMovies = applyFilters(currentRawMovies);
     processedMovies = applySorting(processedMovies);
 
