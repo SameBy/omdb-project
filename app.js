@@ -140,17 +140,24 @@ function loadStaticMovies() {
 }
 
 function sanitizeSearchTerm(term) {
-    let sanitized = term.toLowerCase();
-    
-    sanitized = sanitized.replace(/spiderman/g, 'spider-man');
-    sanitized = sanitized.replace(/ironman/g, 'iron man');
-    sanitized = sanitized.replace(/xmen/g, 'x-men');
-    sanitized = sanitized.replace(/starwars/g, 'star wars');
-    sanitized = sanitized.replace(/harrypotter/g, 'harry potter');
-    sanitized = sanitized.replace(/antman/g, 'ant-man');
-    sanitized = sanitized.replace(/batman/g, 'batman');
-    
-    return sanitized;
+    let cleanTerm = term.toLowerCase().trim().replace(/\s+/g, ' ');
+
+    const dictionary = {
+        "spiderman": "spider-man",
+        "spider man": "spider-man",
+        "ironman": "iron man",
+        "xmen": "x-men",
+        "x men": "x-men",
+        "starwars": "star wars",
+        "harrypotter": "harry potter",
+        "bat man": "batman",
+        "god father": "godfather",
+        "lord of the rings": "the lord of the rings",
+        "avenger": "avengers",
+        "fast and furious": "the fast and the furious"
+    };
+
+    return dictionary[cleanTerm] || cleanTerm;
 }
 
 async function fetchMovies(searchTerm) {
