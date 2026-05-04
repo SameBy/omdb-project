@@ -24,4 +24,4 @@ Since this is a pure Frontend application with no build tools required:
 Simply download the source code and open the `index.html` file in any modern web browser to view the project locally.
 
 ## 👨‍💻 Developer
-Developed by **Samet** as a showcase of frontend architecture, asynchronous data handling, and API optimization techniques.
+Developed by **Samet** to practice and demonstrate modern frontend development, asynchronous data fetching, and API optimization techniques.
