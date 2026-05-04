@@ -217,15 +217,19 @@ async function fetchMovies(searchTerm) {
 function updateUI() {
     if (currentRawMovies.length === 0) return;
 
-    if (isDefaultState) {
-        if(defaultTitle) defaultTitle.style.display = 'block';
-        renderMovies(currentRawMovies);
-        return;
+    if (defaultTitle) {
+        defaultTitle.style.display = isDefaultState ? 'block' : 'none';
     }
 
-    if(defaultTitle) defaultTitle.style.display = 'none';
-    
-    let processedMovies = applyFilters(currentRawMovies);
+    let safeMovies = currentRawMovies.map(movie => ({
+        ...movie,
+        Genre: movie.Genre || "",
+        imdbRating: movie.imdbRating || "0",
+        Type: movie.Type || "",
+        Rated: movie.Rated || "Not Rated"
+    }));
+
+    let processedMovies = applyFilters(safeMovies);
     processedMovies = applySorting(processedMovies);
 
     if (processedMovies.length === 0) {
@@ -233,7 +237,6 @@ function updateUI() {
     } else {
         renderMovies(processedMovies);
     }
-}
 }
 
 function applyFilters(movies) {
