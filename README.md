@@ -1,6 +1,6 @@
 # Vizio - Premium OMDB Movie Search Experience 🎬
 
-Vizio is a modern, high-performance web application built to interact with the [OMDB API](https://www.omdbapi.com/). It provides users with a seamless, Netflix-style interface to search, filter, and discover movies and series. 
+Vizio is a modern, high-performance web application built to interact with the [OMDB API](https://www.omdbapi.com/). It provides users with a seamless and intuitive interface to search, filter, and discover movies and series. 
 
 Unlike standard API-fetching applications, Vizio focuses heavily on **Performance Optimization**, **API Quota Management**, and **User Experience (UX)**.
 
@@ -15,14 +15,13 @@ Unlike standard API-fetching applications, Vizio focuses heavily on **Performanc
 *   **Dynamic Trailer Integration:** Instead of bloating the DOM with heavy YouTube `<iframe>` embeds, Vizio generates smart, dynamic YouTube search queries for each movie, allowing instant trailer access with zero performance cost.
 
 ## 🛠️ Technologies Used
-*   **HTML5 & CSS3:** Semantic markup with a fully responsive, custom-built CSS architecture (Grid/Flexbox) featuring a sleek, dark-mode aesthetic.
+*   **HTML5 & CSS3:** Semantic markup with a fully responsive, custom-built CSS architecture featuring a sleek, dark-mode aesthetic.
 *   **Vanilla JavaScript (ES6+):** Pure JS with no external frameworks. Heavy use of `async/await`, Fetch API, Array manipulation, and DOM rendering.
 *   **OMDB API:** Used as the primary data source for fetching comprehensive movie details.
 
-## ⚙️ Setup and Installation
-Since this is a client-side (Frontend) application, no complex installation is required.
+## ⚙️ How to Run Locally
+Since this is a pure Frontend application with no build tools required:
+Simply download the source code and open the `index.html` file in any modern web browser to view the project locally.
 
-1. Clone the repository:
-   
-```bash
-   git clone [https://github.com/SameBy/omdb-project.git](https://github.com/SameBy/omdb-project.git)
+## 👨‍💻 Developer
+Developed by **Samet** as a showcase of frontend architecture, asynchronous data handling, and API optimization techniques.
