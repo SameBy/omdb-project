@@ -109,16 +109,21 @@ searchInput.addEventListener('keypress', (e) => {
 
 applyFiltersBtn.addEventListener('click', () => {
     applyFiltersBtn.disabled = true;
-    saveState();
     
     const term = searchInput.value.trim();
+    const previousTerm = localStorage.getItem('lastSearchTerm') || "";
+    
+    saveState();
     
     if (term.length === 0) {
         localStorage.removeItem('omdbflix_last_results');
         loadStaticMovies();
-    } else if (term.length >= 3) {
+    } else if (term !== previousTerm && term.length >= 3) {
         isDefaultState = false;
         fetchMovies(sanitizeSearchTerm(term));
+    } else if (term === previousTerm && term.length >= 3) {
+        isDefaultState = false;
+        updateUI(); 
     } else {
         alert("Arama için en az 3 harf girmelisiniz.");
         applyFiltersBtn.disabled = false;
@@ -135,17 +140,17 @@ function loadStaticMovies() {
 }
 
 function sanitizeSearchTerm(term) {
-    const termLower = term.toLowerCase();
-    const corrections = {
-        'spiderman': 'spider-man',
-        'ironman': 'iron man',
-        'batman': 'batman', 
-        'superman': 'superman',
-        'xmen': 'x-men',
-        'starwars': 'star wars',
-        'harrypotter': 'harry potter'
-    };
-    return corrections[termLower] || term;
+    let sanitized = term.toLowerCase();
+    
+    sanitized = sanitized.replace(/spiderman/g, 'spider-man');
+    sanitized = sanitized.replace(/ironman/g, 'iron man');
+    sanitized = sanitized.replace(/xmen/g, 'x-men');
+    sanitized = sanitized.replace(/starwars/g, 'star wars');
+    sanitized = sanitized.replace(/harrypotter/g, 'harry potter');
+    sanitized = sanitized.replace(/antman/g, 'ant-man');
+    sanitized = sanitized.replace(/batman/g, 'batman');
+    
+    return sanitized;
 }
 
 async function fetchMovies(searchTerm) {
@@ -169,7 +174,7 @@ async function fetchMovies(searchTerm) {
         let allResults = [...data.Search];
         const totalResults = parseInt(data.totalResults, 10);
         const totalPages = Math.ceil(totalResults / 10);
-        const maxPagesToFetch = Math.min(totalPages, 4);
+        const maxPagesToFetch = Math.min(totalPages, 5);
 
         if (maxPagesToFetch > 1) {
             const pagePromises = [];
@@ -293,7 +298,7 @@ function renderMovies(movies) {
             card.style.boxShadow = "0 0 10px rgba(0, 210, 255, 0.2)";
         }
         
-        card.innerHTML = `
+card.innerHTML = `
             <img src="${posterSrc}" alt="${safeTitle}" onerror="this.onerror=null; this.src='${posterError}';">
             <div class="movie-info">
                 <h3 title="${safeTitle}">${safeTitle}</h3>
@@ -304,19 +309,25 @@ function renderMovies(movies) {
 
                 <div class="movie-meta">
                     <span><i class="fa-solid fa-calendar"></i> ${movie.Year}</span>
-                    <span class="accent-text" style="display: flex; align-items: center; gap: 5px;">
-                        <span style="font-size: 0.65rem; border: 1px solid var(--accent); padding: 1px 4px; border-radius: 4px; letter-spacing: 0.5px;">IMDb</span>
-                        <i class="fa-solid fa-star"></i> ${movie.imdbRating !== 'N/A' ? movie.imdbRating : '-'}
+                    <span style="display: flex; align-items: center; gap: 5px; color: #f5c518; font-weight: bold;">
+                        <span style="font-size: 0.65rem; border: 1px solid #f5c518; color: #f5c518; padding: 1px 4px; border-radius: 4px; letter-spacing: 0.5px; font-weight: normal;">IMDb</span>
+                        <i class="fa-solid fa-star" style="color: #f5c518;"></i> ${movie.imdbRating !== 'N/A' ? movie.imdbRating : '-'}
                     </span>
                 </div>
                 
                 <div style="margin-top: 10px; font-size: 0.75rem; color: var(--text-dim); display: flex; justify-content: space-between; align-items: center;">
                     <span>${movie.Genre.split(',')[0]}</span>
-                    <span style="border: 1px solid #1f1f27; padding: 2px 6px; border-radius: 4px;">${movie.Rated !== 'N/A' ? movie.Rated : 'Unrated'}</span>
+                    
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(movie.Title + ' ' + movie.Year + ' trailer')}" target="_blank" title="YouTube'da Fragman İzle" style="color: #ff0000; text-decoration: none; border: 1px solid rgba(255,0,0,0.3); padding: 2px 6px; border-radius: 4px; display: flex; align-items: center; gap: 4px; transition: 0.3s; background: rgba(255,0,0,0.05);">
+                            <i class="fa-brands fa-youtube"></i> Fragman
+                        </a>
+                        <span style="border: 1px solid #1f1f27; padding: 2px 6px; border-radius: 4px;">${movie.Rated !== 'N/A' ? movie.Rated : 'Unrated'}</span>
+                    </div>
                 </div>
             </div>
         `;
-        
+
         movieGrid.appendChild(card);
     });
     
