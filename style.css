@@ -226,6 +226,7 @@ header {
     overflow: hidden; 
     text-overflow: ellipsis; 
 }
+
 input[type="range"]#imdb-filter {
     accent-color: #F5C518;
 }
@@ -255,10 +256,11 @@ input[type="range"]#imdb-filter {
     .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
     .logo { margin-bottom: 2rem; }
 }
+
 .apply-btn {
     width: 100%;
     padding: 1rem;
-    background-color: #E50914;
+    background-color: #1DB954;
     color: white;
     border: none;
     border-radius: 10px;
@@ -274,9 +276,11 @@ input[type="range"]#imdb-filter {
 }
 
 .apply-btn:hover {
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.4);
     transform: translateY(-2px);
+    background-color: #1aa34a;
 }
+
 .apply-btn:disabled {
     background: #1f1f27;
     color: #4a4a5a;
