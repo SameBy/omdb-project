@@ -14,6 +14,7 @@ const kidsModeCheckbox = document.getElementById('kids-mode');
 const sortFilter = document.getElementById('sort-filter');
 const applyFiltersBtn = document.getElementById('apply-filters-btn');
 const defaultTitle = document.getElementById('default-title');
+const homeLogo = document.getElementById('home-logo');
 
 let currentRawMovies = [];
 let isDefaultState = true;
@@ -36,6 +37,16 @@ window.addEventListener('DOMContentLoaded', () => {
         loadStaticMovies();
     }
 });
+
+if (homeLogo) {
+    homeLogo.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFiltersBtn.disabled = true;
+        localStorage.removeItem('lastSearchTerm');
+        localStorage.removeItem('omdbflix_last_results');
+        loadStaticMovies();
+    });
+}
 
 function saveState() {
     localStorage.setItem('typeFilter', typeFilter.value);
