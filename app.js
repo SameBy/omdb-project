@@ -96,7 +96,13 @@ allInputs.forEach(el => {
         }
         checkIfFiltersChanged();
     });
-    el.addEventListener('change', checkIfFiltersChanged);
+    el.addEventListener('change', () => {
+        checkIfFiltersChanged();
+        if (el.id === 'kids-mode') {
+            applyFiltersBtn.disabled = false;
+            applyFiltersBtn.click();
+        }
+    });
 });
 
 searchInput.addEventListener('keypress', (e) => {
