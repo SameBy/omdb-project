@@ -40,14 +40,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 if (homeLogo) {
     homeLogo.addEventListener('click', () => {
-        searchInput.value = '';
-        applyFiltersBtn.disabled = true;
-        localStorage.removeItem('lastSearchTerm');
-        localStorage.removeItem('omdbflix_last_results');
-        loadStaticMovies();
+        const keysToRemove = [
+            'lastSearchTerm', 'omdbflix_last_results', 'typeFilter', 
+            'genreFilter', 'minYear', 'maxYear', 'imdbFilter', 
+            'kidsMode', 'sortFilter'
+        ];
+        keysToRemove.forEach(key => localStorage.removeItem(key));
+        window.location.reload();
     });
 }
-
 function saveState() {
     localStorage.setItem('typeFilter', typeFilter.value);
     localStorage.setItem('genreFilter', genreFilter.value);
