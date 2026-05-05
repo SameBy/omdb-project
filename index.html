@@ -33,30 +33,32 @@
                     </label>
                 </div>
 
-                <div class="filter-group">
-                    <label for="type-filter">Content Type</label>
-                    <select id="type-filter">
-                        <option value="">All</option>
-                        <option value="movie">Movies</option>
-                        <option value="series">Series</option>
-                    </select>
-                </div>
+                <div class="mobile-row">
+                    <div class="filter-group">
+                        <label for="type-filter">Content Type</label>
+                        <select id="type-filter">
+                            <option value="">All</option>
+                            <option value="movie">Movies</option>
+                            <option value="series">Series</option>
+                        </select>
+                    </div>
 
-                <div class="filter-group">
-                    <label for="genre-filter">Genre</label>
-                    <select id="genre-filter">
-                        <option value="">All Genres</option>
-                        <option value="Action">Action</option>
-                        <option value="Comedy">Comedy</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Sci-Fi">Sci-Fi</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Thriller">Thriller</option>
-                        <option value="Adventure">Adventure</option>
-                        <option value="Animation">Animation</option>
-                        <option value="Crime">Crime</option>
-                    </select>
+                    <div class="filter-group">
+                        <label for="genre-filter">Genre</label>
+                        <select id="genre-filter">
+                            <option value="">All Genres</option>
+                            <option value="Action">Action</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Crime">Crime</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="filter-group">
@@ -81,14 +83,19 @@
         </aside>
 
         <main class="main-content">
-            <header style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 30px; margin-bottom: 2rem;">
-                <h2 class="logo" style="margin: 0; font-size: 2.5rem; min-width: max-content;">VIZ<span>IO</span></h2>
-                <div class="search-container" style="flex: 1; max-width: 900px; margin: 0;">
+            <header style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 2rem;">
+                <div style="flex: 1; display: flex; justify-content: flex-start;">
+                    <h2 id="home-logo" class="logo" style="margin: 0; font-size: 2.5rem; cursor: pointer;">VIZ<span>IO</span></h2>
+                </div>
+                
+                <div class="search-container" style="flex: 2; max-width: 800px; margin: 0 auto;">
                     <div class="search-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" id="search-input" placeholder="Search for movies, series, or actors..." autocomplete="off">
                     </div>
                 </div>
+                
+                <div style="flex: 1;"></div>
             </header>
 
             <section class="results-section">
