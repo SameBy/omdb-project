@@ -255,6 +255,9 @@ input[type="range"]#imdb-filter {
     .main-content { padding: 0 1.5rem; }
     .grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
     .logo { margin-bottom: 2rem; }
+    
+    .mobile-row { display: flex; gap: 15px; width: 100%; }
+    .mobile-row .filter-group { flex: 1; margin-bottom: 1rem; }
 }
 
 .apply-btn {
